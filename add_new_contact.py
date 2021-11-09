@@ -26,7 +26,8 @@ class AddNewContact(unittest.TestCase):
         wd.find_element_by_link_text("home page").click()
 
     def create_new_contact(self, wd, name, middlen, surname, nick, company="Company1", address="111, Street",
-                           home_phone="12345678", mobile_phone="12345678", work_phone="12345678"):
+                           home_phone="12345678", mobile_phone="12345678", work_phone="12345678", email="aaaa@gmail.com",
+                           email2="aaaa@gmail.com", email3="aaaa@gmail.com"):
         # init new contact creation
         wd.find_element_by_link_text("add new").click()
         # names section
@@ -65,13 +66,13 @@ class AddNewContact(unittest.TestCase):
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").clear()
-        wd.find_element_by_name("email").send_keys("aaaa@gmail.com")
+        wd.find_element_by_name("email").send_keys(email)
         wd.find_element_by_name("email2").click()
         wd.find_element_by_name("email2").clear()
-        wd.find_element_by_name("email2").send_keys("aaaa@gmail.com")
+        wd.find_element_by_name("email2").send_keys(email2)
         wd.find_element_by_name("email3").click()
         wd.find_element_by_name("email3").clear()
-        wd.find_element_by_name("email3").send_keys("aaaa@gmail.com")
+        wd.find_element_by_name("email3").send_keys(email3)
         # birthday section
         wd.find_element_by_name("bday").click()
         Select(wd.find_element_by_name("bday")).select_by_visible_text("3")
