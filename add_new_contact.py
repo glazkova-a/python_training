@@ -11,16 +11,21 @@ class AddNewContact(unittest.TestCase):
     
     def test_add_new_contact(self):
         wd = self.wd
-        # open home page
-        wd.get("http://localhost/addressbook/index.php")
-        # login
-        wd.find_element_by_name("user").click()
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys("admin")
-        wd.find_element_by_name("pass").click()
-        wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys("secret")
-        wd.find_element_by_xpath("//input[@value='Login']").click()
+        self.open_home_page(wd)
+        self.login(wd)
+        self.create_new_contact(wd)
+        self.return_to_home_page(wd)
+        self.logout(wd)
+
+    def logout(self, wd):
+        # logout
+        wd.find_element_by_link_text("Logout").click()
+
+    def return_to_home_page(self, wd):
+        # go to home page
+        wd.find_element_by_link_text("home page").click()
+
+    def create_new_contact(self, wd):
         # init new contact creation
         wd.find_element_by_link_text("add new").click()
         # fill in new contact form
@@ -83,12 +88,21 @@ class AddNewContact(unittest.TestCase):
         wd.find_element_by_name("address2").send_keys("222, Street")
         # submit form
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
-        # go to home page
-        wd.find_element_by_link_text("home page").click()
-        # logout
-        wd.find_element_by_link_text("Logout").click()
 
-    
+    def login(self, wd):
+        # login
+        wd.find_element_by_name("user").click()
+        wd.find_element_by_name("user").clear()
+        wd.find_element_by_name("user").send_keys("admin")
+        wd.find_element_by_name("pass").click()
+        wd.find_element_by_name("pass").clear()
+        wd.find_element_by_name("pass").send_keys("secret")
+        wd.find_element_by_xpath("//input[@value='Login']").click()
+
+    def open_home_page(self, wd):
+        # open home page
+        wd.get("http://localhost/addressbook/index.php")
+
     def tearDown(self):
         self.wd.quit()
 
