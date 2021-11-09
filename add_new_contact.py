@@ -28,7 +28,7 @@ class AddNewContact(unittest.TestCase):
     def create_new_contact(self, wd, name, middlen, surname, nick, company="Company1", address="111, Street",
                            home_phone="12345678", mobile_phone="12345678", work_phone="12345678", email="aaaa@gmail.com",
                            email2="aaaa@gmail.com", email3="aaaa@gmail.com", birth_day="3", birth_month="March",
-                           birth_year="1987", ann_day="16", ann_month="August", ann_year="2000"):
+                           birth_year="1987", ann_day="16", ann_month="August", ann_year="2000", address2="222, Street"):
         # init new contact creation
         wd.find_element_by_link_text("add new").click()
         # names section
@@ -95,7 +95,7 @@ class AddNewContact(unittest.TestCase):
         # secondary section
         wd.find_element_by_name("address2").click()
         wd.find_element_by_name("address2").clear()
-        wd.find_element_by_name("address2").send_keys("222, Street")
+        wd.find_element_by_name("address2").send_keys(address2)
         # submit form
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
