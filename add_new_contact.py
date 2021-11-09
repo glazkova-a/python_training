@@ -27,7 +27,8 @@ class AddNewContact(unittest.TestCase):
 
     def create_new_contact(self, wd, name, middlen, surname, nick, company="Company1", address="111, Street",
                            home_phone="12345678", mobile_phone="12345678", work_phone="12345678", email="aaaa@gmail.com",
-                           email2="aaaa@gmail.com", email3="aaaa@gmail.com"):
+                           email2="aaaa@gmail.com", email3="aaaa@gmail.com", birth_day="3", birth_month="March",
+                           birth_year="1987"):
         # init new contact creation
         wd.find_element_by_link_text("add new").click()
         # names section
@@ -75,13 +76,13 @@ class AddNewContact(unittest.TestCase):
         wd.find_element_by_name("email3").send_keys(email3)
         # birthday section
         wd.find_element_by_name("bday").click()
-        Select(wd.find_element_by_name("bday")).select_by_visible_text("3")
+        Select(wd.find_element_by_name("bday")).select_by_visible_text(birth_day)
         wd.find_element_by_xpath("//option[@value='3']").click()
-        Select(wd.find_element_by_name("bmonth")).select_by_visible_text("March")
+        Select(wd.find_element_by_name("bmonth")).select_by_visible_text(birth_month)
         wd.find_element_by_xpath("//option[@value='March']").click()
         wd.find_element_by_name("byear").click()
         wd.find_element_by_name("byear").clear()
-        wd.find_element_by_name("byear").send_keys("1987")
+        wd.find_element_by_name("byear").send_keys(birth_year)
         # anniversary section
         wd.find_element_by_name("aday").click()
         Select(wd.find_element_by_name("aday")).select_by_visible_text("16")
