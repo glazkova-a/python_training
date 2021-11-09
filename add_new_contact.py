@@ -11,7 +11,9 @@ class AddNewContact(unittest.TestCase):
     
     def test_add_new_contact(self):
         wd = self.wd
+        # open home page
         wd.get("http://localhost/addressbook/index.php")
+        # login
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys("admin")
@@ -19,7 +21,9 @@ class AddNewContact(unittest.TestCase):
         wd.find_element_by_name("pass").clear()
         wd.find_element_by_name("pass").send_keys("secret")
         wd.find_element_by_xpath("//input[@value='Login']").click()
+        # init new contact creation
         wd.find_element_by_link_text("add new").click()
+        # fill in new contact form
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys("A")
@@ -77,8 +81,11 @@ class AddNewContact(unittest.TestCase):
         wd.find_element_by_name("address2").click()
         wd.find_element_by_name("address2").clear()
         wd.find_element_by_name("address2").send_keys("222, Street")
+        # submit form
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        # go to home page
         wd.find_element_by_link_text("home page").click()
+        # logout
         wd.find_element_by_link_text("Logout").click()
 
     
