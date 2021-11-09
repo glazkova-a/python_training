@@ -13,7 +13,11 @@ class AddNewContact(unittest.TestCase):
         wd = self.wd
         self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
-        self.create_new_contact(wd, name="A", middlen="B", surname="C", nick="D")
+        self.create_new_contact(wd, name="A", middlen="B", surname="C", nick="D", company="Company1",
+                                address="111, Street", home_phone="12345678", mobile_phone="12345678",
+                                work_phone="12345678", email="aaaa@gmail.com", email2="aaaa@gmail.com",
+                                email3="aaaa@gmail.com", birth_day="3", birth_month="March", birth_year="1987",
+                                ann_day="16", ann_month="August", ann_year="2000", address2="222, Street")
         self.return_to_home_page(wd)
         self.logout(wd)
 
@@ -25,10 +29,9 @@ class AddNewContact(unittest.TestCase):
         # go to home page
         wd.find_element_by_link_text("home page").click()
 
-    def create_new_contact(self, wd, name, middlen, surname, nick, company="Company1", address="111, Street",
-                           home_phone="12345678", mobile_phone="12345678", work_phone="12345678", email="aaaa@gmail.com",
-                           email2="aaaa@gmail.com", email3="aaaa@gmail.com", birth_day="3", birth_month="March",
-                           birth_year="1987", ann_day="16", ann_month="August", ann_year="2000", address2="222, Street"):
+    def create_new_contact(self, wd, name, middlen, surname, nick, company, address, home_phone, mobile_phone,
+                           work_phone, email, email2, email3, birth_day, birth_month, birth_year, ann_day, ann_month,
+                           ann_year, address2):
         # init new contact creation
         wd.find_element_by_link_text("add new").click()
         # names section
