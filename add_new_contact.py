@@ -28,7 +28,7 @@ class AddNewContact(unittest.TestCase):
     def create_new_contact(self, wd):
         # init new contact creation
         wd.find_element_by_link_text("add new").click()
-        # fill in new contact form
+        # names section
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys("A")
@@ -41,12 +41,15 @@ class AddNewContact(unittest.TestCase):
         wd.find_element_by_name("nickname").click()
         wd.find_element_by_name("nickname").clear()
         wd.find_element_by_name("nickname").send_keys("D")
+        # company section
         wd.find_element_by_name("company").click()
         wd.find_element_by_name("company").clear()
         wd.find_element_by_name("company").send_keys("Company1")
+        # address section
         wd.find_element_by_name("address").click()
         wd.find_element_by_name("address").clear()
         wd.find_element_by_name("address").send_keys("111, Street")
+        # phones section
         wd.find_element_by_name("home").click()
         wd.find_element_by_name("home").click()
         wd.find_element_by_name("home").clear()
@@ -57,6 +60,7 @@ class AddNewContact(unittest.TestCase):
         wd.find_element_by_name("work").click()
         wd.find_element_by_name("work").clear()
         wd.find_element_by_name("work").send_keys("12345678")
+        # emails section
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").clear()
@@ -67,6 +71,7 @@ class AddNewContact(unittest.TestCase):
         wd.find_element_by_name("email3").click()
         wd.find_element_by_name("email3").clear()
         wd.find_element_by_name("email3").send_keys("aaaa@gmail.com")
+        # birthday section
         wd.find_element_by_name("bday").click()
         Select(wd.find_element_by_name("bday")).select_by_visible_text("3")
         wd.find_element_by_xpath("//option[@value='3']").click()
@@ -75,6 +80,7 @@ class AddNewContact(unittest.TestCase):
         wd.find_element_by_name("byear").click()
         wd.find_element_by_name("byear").clear()
         wd.find_element_by_name("byear").send_keys("1987")
+        # anniversary section
         wd.find_element_by_name("aday").click()
         Select(wd.find_element_by_name("aday")).select_by_visible_text("16")
         wd.find_element_by_xpath("//div[@id='content']/form/select[3]/option[18]").click()
@@ -83,6 +89,7 @@ class AddNewContact(unittest.TestCase):
         wd.find_element_by_name("ayear").click()
         wd.find_element_by_name("ayear").clear()
         wd.find_element_by_name("ayear").send_keys("2000")
+        # secondary section
         wd.find_element_by_name("address2").click()
         wd.find_element_by_name("address2").clear()
         wd.find_element_by_name("address2").send_keys("222, Street")
