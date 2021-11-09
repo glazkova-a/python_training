@@ -25,7 +25,7 @@ class AddNewContact(unittest.TestCase):
         # go to home page
         wd.find_element_by_link_text("home page").click()
 
-    def create_new_contact(self, wd, name, middlen, surname, nick, company="Company1"):
+    def create_new_contact(self, wd, name, middlen, surname, nick, company="Company1", address="111, Street"):
         # init new contact creation
         wd.find_element_by_link_text("add new").click()
         # names section
@@ -48,7 +48,7 @@ class AddNewContact(unittest.TestCase):
         # address section
         wd.find_element_by_name("address").click()
         wd.find_element_by_name("address").clear()
-        wd.find_element_by_name("address").send_keys("111, Street")
+        wd.find_element_by_name("address").send_keys(address)
         # phones section
         wd.find_element_by_name("home").click()
         wd.find_element_by_name("home").click()
