@@ -2,7 +2,7 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 import unittest
-from group1 import Group1
+from group1 import Group
 
 class AddNewContact(unittest.TestCase):
     def setUp(self):
@@ -14,7 +14,7 @@ class AddNewContact(unittest.TestCase):
         wd = self.wd
         self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
-        self.create_new_contact(wd, Group1(name="A", middlen="B", surname="C", nick="D", company="Company1",
+        self.create_new_contact(wd, Group(name="A", middlen="B", surname="C", nick="D", company="Company1",
                                 address="111, Street", home_phone="12345678", mobile_phone="12345678",
                                 work_phone="12345678", email="aaaa@gmail.com", email2="aaaa@gmail.com",
                                 email3="aaaa@gmail.com", birth_day="3", birth_month="March", birth_year="1987",
