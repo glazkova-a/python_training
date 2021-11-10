@@ -1,4 +1,4 @@
-class Group1:
+class Group:
     def __init__(self,name, middlen, surname, nick, company, address, home_phone, mobile_phone, work_phone, email, email2, email3, birth_day, birth_month, birth_year, ann_day, ann_month, ann_year, address2):
         self.name = name
         self.middlen = middlen
