@@ -81,7 +81,7 @@ class AddNewContact(unittest.TestCase):
         Select(wd.find_element_by_name("bday")).select_by_visible_text(contact_model.birth_day)
 
         Select(wd.find_element_by_name("bmonth")).select_by_visible_text(contact_model.birth_month)
-        wd.find_element_by_xpath("//option[@value='March']").click()
+
         wd.find_element_by_name("byear").click()
         wd.find_element_by_name("byear").clear()
         wd.find_element_by_name("byear").send_keys(contact_model.birth_year)
