@@ -90,7 +90,7 @@ class AddNewContact(unittest.TestCase):
         Select(wd.find_element_by_name("aday")).select_by_visible_text(contact_model.ann_day)
 
         Select(wd.find_element_by_name("amonth")).select_by_visible_text(contact_model.ann_month)
-        wd.find_element_by_xpath("//div[@id='content']/form/select[4]/option[9]").click()
+
         wd.find_element_by_name("ayear").click()
         wd.find_element_by_name("ayear").clear()
         wd.find_element_by_name("ayear").send_keys(contact_model.ann_year)
