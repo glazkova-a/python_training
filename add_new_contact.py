@@ -88,7 +88,7 @@ class AddNewContact(unittest.TestCase):
         # anniversary section
         wd.find_element_by_name("aday").click()
         Select(wd.find_element_by_name("aday")).select_by_visible_text(contact_model.ann_day)
-        wd.find_element_by_xpath("//div[@id='content']/form/select[3]/option[18]").click()
+
         Select(wd.find_element_by_name("amonth")).select_by_visible_text(contact_model.ann_month)
         wd.find_element_by_xpath("//div[@id='content']/form/select[4]/option[9]").click()
         wd.find_element_by_name("ayear").click()
