@@ -79,18 +79,14 @@ class AddNewContact(unittest.TestCase):
         # birthday section
         wd.find_element_by_name("bday").click()
         Select(wd.find_element_by_name("bday")).select_by_visible_text(contact_model.birth_day)
-
         Select(wd.find_element_by_name("bmonth")).select_by_visible_text(contact_model.birth_month)
-
         wd.find_element_by_name("byear").click()
         wd.find_element_by_name("byear").clear()
         wd.find_element_by_name("byear").send_keys(contact_model.birth_year)
         # anniversary section
         wd.find_element_by_name("aday").click()
         Select(wd.find_element_by_name("aday")).select_by_visible_text(contact_model.ann_day)
-
         Select(wd.find_element_by_name("amonth")).select_by_visible_text(contact_model.ann_month)
-
         wd.find_element_by_name("ayear").click()
         wd.find_element_by_name("ayear").clear()
         wd.find_element_by_name("ayear").send_keys(contact_model.ann_year)
