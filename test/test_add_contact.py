@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 from model.contact_model import Contact
 
 
