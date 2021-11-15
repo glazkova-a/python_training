@@ -42,7 +42,7 @@ class GroupHelper:
         wd.find_element_by_name("selected[]").click()
         # click edit button
         wd.find_element_by_name("edit").click()
-        # clear footer
+        # clear footer (making some changes with the group)
         wd.find_element_by_name("group_footer").click()
         wd.find_element_by_name("group_footer").clear()
         # submit editing

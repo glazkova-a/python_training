@@ -73,6 +73,21 @@ class ContactHelper:
         # submit form
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
+    def edit_first_contact(self):
+        wd = self.app.wd
+        # select first contact
+        wd.find_element_by_name("selected[]").click()
+        # click "edit" image
+        wd.find_element_by_xpath("//img[@alt='Edit']").click()
+        # clear first name (making some changes with the contact)
+        wd.find_element_by_name("firstname").click()
+        wd.find_element_by_name("firstname").clear()
+        # submit editing
+        wd.find_element_by_name("update").click()
+
+
+
+
 
 
 
