@@ -77,11 +77,9 @@ class ContactHelper:
         wd = self.app.wd
         # open contact list page
         wd.find_element_by_link_text("home").click()
-        # select first contact
-        wd.find_element_by_name("selected[]").click()
         # click "edit" image
         wd.find_element_by_xpath("//img[@alt='Edit']").click()
-        # edit first contact fields (making some changes with the contact)
+        # edit first contact fields
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys(contact_model.name)
