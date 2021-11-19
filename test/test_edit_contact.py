@@ -5,7 +5,7 @@ def test_edit_first_contact(app):
 
     app.open_home_page()
     if app.contact.count_contact_entries() == 0:
-        app.contact.create_new_contact(Contact(name="Name444", middlen="", surname="", nick="H", company="Company1",
+        app.contact.create_new_contact(Contact(name="Edit_me", middlen="", surname="", nick="H", company="Company1",
                                 address="111, Street", home_phone="12345678", mobile_phone="12345678",
                                 work_phone="12345678", email="aaaa@gmail.com", email2="aaaa@gmail.com",
                                 email3="aaaa@gmail.com", birth_day="3", birth_month="March", birth_year="1987",
