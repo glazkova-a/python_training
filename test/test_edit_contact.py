@@ -11,4 +11,4 @@ def test_edit_first_contact(app):
                                 email3="aaaa@gmail.com", birth_day="3", birth_month="March", birth_year="1987",
                                 ann_day="16", ann_month="August", ann_year="1976", address2="222, Street"))
     app.return_to_home_page()
-    app.session.logout()
+
