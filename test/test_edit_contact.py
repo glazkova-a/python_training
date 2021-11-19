@@ -4,7 +4,7 @@ from model.contact_model import Contact
 def test_edit_first_contact(app):
 
     app.open_home_page()
-    app.session.login(username="admin", password="secret")
+
     app.contact.edit_first_contact(Contact(name="", middlen="", surname="", nick="H", company="Company1",
                                 address="111, Street", home_phone="12345678", mobile_phone="12345678",
                                 work_phone="12345678", email="aaaa@gmail.com", email2="aaaa@gmail.com",
