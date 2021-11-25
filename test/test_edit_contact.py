@@ -3,7 +3,7 @@ from model.contact_model import Contact
 
 def test_edit_first_contact(app):
 
-    app.open_home_page()
+
     if app.contact.count_contact_entries() == 0:
         app.contact.create_new_contact(Contact(name="Edit_me", middlen="", surname="", nick="H", company="Company1",
                                 address="111, Street", home_phone="12345678", mobile_phone="12345678",

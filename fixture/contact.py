@@ -101,6 +101,7 @@ class ContactHelper:
 
     def count_contact_entries(self):
         wd = self.app.wd
+        self.app.open_home_page()
         return len(wd.find_elements_by_name("selected[]"))
 
 
