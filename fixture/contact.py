@@ -39,7 +39,7 @@ class ContactHelper:
         wd.find_element_by_name("nickname").clear()
         wd.find_element_by_name("nickname").send_keys(contact_model.nick)
         # company section
-        wd.find_element_by_name("company").click
+        wd.find_element_by_name("company").click()
         wd.find_element_by_name("company").clear()
         wd.find_element_by_name("company").send_keys(contact_model.company)
         # address section
