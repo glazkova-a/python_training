@@ -25,9 +25,8 @@ class ContactHelper:
         # submit editing
         wd.find_element_by_name("update").click()
 
-    def fill_in_contact_form(self, text, contact_model):
+    def fill_in_contact_form(self, contact_model):
         wd = self.app.wd
-        # name section
         self.name("firstname", contact_model.name)
         self.name("middlename", contact_model.middlen)
         self.name("lastname", contact_model.surname)
@@ -40,26 +39,13 @@ class ContactHelper:
         self.name("email", contact_model.email)
         self.name("email2", contact_model.email2)
         self.name("email3", contact_model.email3)
-
-        # birthday section
-        if text is not None:
-            wd.find_element_by_name("bday").click()
-            Select(wd.find_element_by_name("bday")).select_by_visible_text(contact_model.birth_day)
-        if text is not None:
-            wd.find_element_by_xpath("//option[@value='3']").click()
-            Select(wd.find_element_by_name("bmonth")).select_by_visible_text(contact_model.birth_month)
+        self.menu("bday", contact_model.birth_day)
+        self.menu("bmonth", contact_model.birth_month)
         self.name("byear", contact_model.birth_year)
-
-        # anniversary section
-        if text is not None:
-            wd.find_element_by_name("aday").click()
-            Select(wd.find_element_by_name("aday")).select_by_visible_text(contact_model.ann_day)
-        if text is not None:
-            wd.find_element_by_name("amonth").click()
-            Select(wd.find_element_by_name("amonth")).select_by_visible_text(contact_model.ann_month)
+        self.menu("aday", contact_model.ann_day)
+        self.menu("amonth", contact_model.ann_month)
         self.name("ayear", contact_model.ann_year)
         self.name("address2", contact_model.address2)
-
 
     def name(self, fieldname, text):
         wd = self.app.wd
@@ -68,7 +54,14 @@ class ContactHelper:
             wd.find_element_by_name(fieldname).clear()
             wd.find_element_by_name(fieldname).send_keys(text)
 
-
+    def menu(self, fieldname, text):
+        wd = self.app.wd
+        if text is not None:
+            if fieldname == "bmonth":
+                wd.find_element_by_xpath("//option[@value='3']").click()
+            else:
+                wd.find_element_by_name(fieldname).click()
+            Select(wd.find_element_by_name(fieldname)).select_by_visible_text(text)
 
     def del_first_contact(self):
         wd = self.app.wd
@@ -90,7 +83,7 @@ class ContactHelper:
      #   wd = self.app.wd
      #   self.app.open_home_page()
      #   contacts = []
-     #   for element in wd.find_elements_by_css_selector("td.odd"):
+     #   for element in wd.find_elements_by_css_selector("td.center"):
       #      text = element.text
       #      id = element.find_element_by_name("selected[]").get_attribute("id")
       #      contacts.append(Contact(name=text, id=id))
