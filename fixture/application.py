@@ -22,8 +22,8 @@ class Application:
 
     def open_home_page(self):
         wd = self.wd
-        if not (wd.current_url.endswith("/index.php") and len(wd.find_elements("//table[@id='maintable']/tbody/tr/th")) > 0):
-            wd.get("http://localhost/addressbook/index.php")
+        #if not (wd.current_url.endswith("/index.php") and len(wd.find_elements("//table[@id='maintable']/tbody/tr/th")) > 0):
+        wd.get("http://localhost/addressbook/index.php")
 
     def return_to_home_page(self):
         # go to home page

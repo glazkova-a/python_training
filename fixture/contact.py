@@ -79,17 +79,19 @@ class ContactHelper:
         self.app.open_home_page()
         return len(wd.find_elements_by_name("selected[]"))
 
-    #def get_contact_list(self):
-     #   wd = self.app.wd
-     #   self.app.open_home_page()
-     #   contacts = []
-     #   for element in wd.find_elements_by_css_selector("td.center"):
-      #      text = element.text
-      #      id = element.find_element_by_name("selected[]").get_attribute("id")
-      #      contacts.append(Contact(name=text, id=id))
-      #  return contacts
-
-
+    def get_contact_list(self):
+        wd = self.app.wd
+        self.app.open_home_page()
+        contacts = []
+        for element in wd.find_elements_by_name("entry"):
+            cells = element.find_elements_by_tag_name("td")
+            if cells[1]:
+                surname = cells[1].text
+            if cells[2]:
+                name = cells[2].text
+            id = element.find_element_by_name("selected[]").get_attribute("id")
+            contacts.append(Contact(name=name, surname=surname, id=id))
+        return contacts
 
         #for element in wd.find_elements_by_css_selector("span.group"):
             #text = element.text
