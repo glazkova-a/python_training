@@ -16,12 +16,15 @@ class ContactHelper:
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
         self.contact_cache = None
 
-    def edit_first_contact(self, new_contact_data):
+    def edit_first_contact(self):
+        self.edit_contact_by_index(0)
+
+    def edit_contact_by_index(self, index, new_contact_data):
         wd = self.app.wd
         # open contact list page
         wd.find_element_by_link_text("home").click()
-        # click "edit" image
-        wd.find_element_by_xpath("//img[@alt='Edit']").click()
+        # click "edit" some random image
+        wd.find_elements_by_xpath("//img[@alt='Edit']")[index].click()
         self.fill_in_contact_form(new_contact_data)
         # submit editing
         wd.find_element_by_name("update").click()
@@ -66,11 +69,14 @@ class ContactHelper:
             Select(wd.find_element_by_name(fieldname)).select_by_visible_text(text)
 
     def del_first_contact(self):
+        self.del_contact_by_index(0)
+
+    def del_contact_by_index(self, index):
         wd = self.app.wd
         # open contact list page
         wd.find_element_by_link_text("home").click()
-        # select first contact
-        wd.find_element_by_name("selected[]").click()
+        # select some random contact
+        wd.find_elements_by_name("selected[]")[index].click()
         # select 'delete'
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         # delete confirmation
