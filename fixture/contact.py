@@ -1,5 +1,6 @@
 from selenium.webdriver.support.select import Select
 from model.contact_model import Contact
+import re
 
 
 class ContactHelper:
@@ -41,6 +42,7 @@ class ContactHelper:
         self.name("home", contact_model.home_phone)
         self.name("mobile", contact_model.mobile_phone)
         self.name("work", contact_model.work_phone)
+        self.name("phone2", contact_model.secondary_phone)
         self.name("email", contact_model.email)
         self.name("email2", contact_model.email2)
         self.name("email3", contact_model.email3)
@@ -97,22 +99,50 @@ class ContactHelper:
             self.contact_cache = []
             for element in wd.find_elements_by_name("entry"):
                 cells = element.find_elements_by_tag_name("td")
-                if cells[1]:
-                    surname = cells[1].text
-                if cells[2]:
-                    name = cells[2].text
-                id = element.find_element_by_name("selected[]").get_attribute("id")
-                self.contact_cache.append(Contact(name=name, surname=surname, id=id))
+                surname = cells[1].text
+                name = cells[2].text
+                id = cells[0].find_element_by_tag_name("input").get_attribute("id")
+                all_phones = cells[5].text
+                self.contact_cache.append(
+                    Contact(name=name, surname=surname, id=id, all_phones_from_home_page=all_phones))
+
         return list(self.contact_cache)
 
+    def open_contact_to_edit_by_index(self, index):
+        wd = self.app.wd
+        self.app.open_home_page()
+        row = wd.find_elements_by_name("entry")[index]
+        cell = row.find_elements_by_tag_name("td")[7]
+        cell.find_element_by_tag_name("a").click()
 
+    def open_contact_view_by_index(self, index):
+        wd = self.app.wd
+        self.app.open_home_page()
+        row = wd.find_elements_by_name("entry")[index]
+        cell = row.find_elements_by_tag_name("td")[6]
+        cell.find_element_by_tag_name("a").click()
 
+    def get_contact_info_from_edit_page(self, index):
+        wd = self.app.wd
+        self.open_contact_to_edit_by_index(index)
+        firstname = wd.find_element_by_name("firstname").get_attribute("value")
+        lastname = wd.find_element_by_name("lastname").get_attribute("value")
+        id = wd.find_element_by_name("id").get_attribute("value")
+        home_phone = wd.find_element_by_name("home").get_attribute("value")
+        work_phone = wd.find_element_by_name("work").get_attribute("value")
+        mobile_phone = wd.find_element_by_name("mobile").get_attribute("value")
+        secondary_phone = wd.find_element_by_name("phone2").get_attribute("value")
+        return Contact(name=firstname, surname=lastname, id=id,
+                       home_phone=home_phone, mobile_phone=mobile_phone, work_phone=work_phone,
+                       secondary_phone=secondary_phone)
 
-
-
-
-
-
-
-
-
+    def get_contact_from_view_page(self, index):
+        wd = self.app.wd
+        self.open_contact_view_by_index(index)
+        text = wd.find_element_by_id("content").text
+        home_phone = re.search("H: (.*)", text).group(1)
+        work_phone = re.search("W: (.*)", text).group(1)
+        mobile_phone = re.search("M: (.*)", text).group(1)
+        ## secondary_phone is none --> failed due to splitted str
+        #secondary_phone = re.search("P: (.*)", text).group(1)
+        return Contact(home_phone=home_phone, mobile_phone=mobile_phone, work_phone=work_phone)
