@@ -7,7 +7,7 @@ def test_assert_random_contact(app):
     if app.contact.count_contact_entries() == 0:
         app.contact.create_new_contact(Contact(name="Assert", surname="Me", address="169, Green St", email="assert@gmail.com",
                                                email2="assert_me@gmail.com", email3="assert_itself@gmail.com", home_phone="0987654",
-                                               mobile_phone="56565656", work_phone="345676543", secondary_phone="+1000000"))
+                                               mobile_phone="56565656", work_phone="345676543", secondary_phone="+1234567890"))
 
     list_contact_from_home_page = app.contact.get_contact_list()
     index = randrange(len(list_contact_from_home_page))
@@ -15,7 +15,7 @@ def test_assert_random_contact(app):
     contact_from_edit_page = app.contact.get_contact_info_from_edit_page(index)
 
     # method 1 - assertion works as is without additional functions
-    assert contact_from_home_page == contact_from_edit_page
+    #assert contact_from_home_page == contact_from_edit_page
 
     # method 2 - assertion with merge
     assert contact_from_home_page.id == contact_from_edit_page.id
@@ -28,7 +28,7 @@ def test_assert_random_contact(app):
 
 def merge_phones_like_on_home_page(contact):
     return "\n".join(filter(lambda x: x != "",
-                            map(lambda x: clear(x),
+                            map(lambda x: clear_phones(x),
                                 filter(lambda x: x is not None,
                                        [contact.home_phone, contact.mobile_phone, contact.work_phone,
                                         contact.secondary_phone]))))
@@ -36,15 +36,17 @@ def merge_phones_like_on_home_page(contact):
 
 def merge_emails_like_on_home_page(contact):
     return "\n".join(filter(lambda x: x != "",
-                            map(lambda x: clear(x),
+                            map(lambda x: clear_emails(x),
                                 filter(lambda x: x is not None,
                                        [contact.email, contact.email2, contact.email3]))))
 
 
-def clear(s):
+def clear_phones(s):
     return re.sub('[() -]', "", s)
 
 
+def clear_emails(m):
+    return re.sub('[()]', "", m)
 
 
 
