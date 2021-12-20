@@ -9,7 +9,7 @@ def test_del_some_contact(app, db, check_ui):
     old_contacts = db.get_contact_list()
     contact = random.choice(old_contacts)
     app.contact.del_contact_by_id(contact.id)
-    new_contacts = app.contact.get_contact_list()
+    new_contacts = db.get_contact_list()
     assert len(old_contacts) - 1 == len(new_contacts)
     old_contacts.remove(contact)
     assert old_contacts == new_contacts
