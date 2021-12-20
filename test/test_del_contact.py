@@ -1,5 +1,4 @@
 from model.contact_model import Contact
-from random import randrange
 import random
 
 
