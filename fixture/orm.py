@@ -11,19 +11,19 @@ class ORMFixture:
 
     class ORMGroup(db.Entity):
         _table_ = 'group_list'
-        id = PrimaryKey(int, colomn='group_id')
-        name = Optional(str, colomn='group_name')
-        header = Optional(str, colomn='group_header')
-        footer = Optional(str, colomn='group_footer')
-        contacts = Set(lambda: ORMFixture.ORMContact, table="address_in_groups", colomn="id", reverse="groups", lazy=True)
+        id = PrimaryKey(int, column='group_id')
+        name = Optional(str, column='group_name')
+        header = Optional(str, column='group_header')
+        footer = Optional(str, column='group_footer')
+        contacts = Set(lambda: ORMFixture.ORMContact, table="address_in_groups", column="id", reverse="groups", lazy=True)
 
     class ORMContact(db.Entity):
         _table_ = 'addressbook'
-        id = PrimaryKey(int, colomn='id')
-        firstname = Optional(str, colomn='firstname')
-        lastname = Optional(str, colomn='lastname')
-        deprecated = Optional(datetime, colomn='deprecated')
-        groups = Set(lambda: ORMFixture.ORMGroup, atble="address_in_groups", colomn="group_id", reverse="contacts", lazy=True)
+        id = PrimaryKey(int, column='id')
+        firstname = Optional(str, column='firstname')
+        lastname = Optional(str, column='lastname')
+        deprecated = Optional(str, column='deprecated')
+        groups = Set(lambda: ORMFixture.ORMGroup, table="address_in_groups", column="group_id", reverse="contacts", lazy=True)
 
     def __init__(self, host, name, user, password):
         self.db.bind('mysql', host=host, database=name, user=user, password=password, conv=decoders)

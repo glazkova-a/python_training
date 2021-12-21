@@ -98,7 +98,9 @@ class ContactHelper:
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         # delete confirmation
         wd.switch_to.alert.accept()
+        wd.find_element_by_css_selector("div.msgbox")
         self.contact_cache = None
+
 
     def count_contact_entries(self):
         wd = self.app.wd
