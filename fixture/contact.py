@@ -52,6 +52,7 @@ class ContactHelper:
         self.menu("aday", contact_model.ann_day)
         self.menu("amonth", contact_model.ann_month)
         self.name("ayear", contact_model.ann_year)
+        self.menu("new_group", contact_model.new_group)
         self.name("address2", contact_model.address2)
 
     def name(self, fieldname, text):
@@ -66,6 +67,8 @@ class ContactHelper:
         if text is not None:
             if fieldname == "bmonth":
                 wd.find_element_by_xpath("//option[@value='3']").click()
+            elif fieldname == "new_group":
+                wd.find_element_by_xpath("//option[@value='190']").click()
             else:
                 wd.find_element_by_name(fieldname).click()
             Select(wd.find_element_by_name(fieldname)).select_by_visible_text(text)
