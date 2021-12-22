@@ -68,7 +68,7 @@ class ContactHelper:
             if fieldname == "bmonth":
                 wd.find_element_by_xpath("//option[@value='3']").click()
             elif fieldname == "new_group":
-                wd.find_element_by_xpath("//option[@value='190']").click()
+                wd.find_element_by_xpath("//option[@value='195']").click()
             else:
                 wd.find_element_by_name(fieldname).click()
             Select(wd.find_element_by_name(fieldname)).select_by_visible_text(text)
