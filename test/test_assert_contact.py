@@ -53,11 +53,9 @@ def test_assert_all_contacts(app, db):
     contacts_from_home_page_unsorted = app.contact.get_contact_list()
     contacts_from_db = db.get_contact_list()
     contacts_from_home_page = sorted(contacts_from_home_page_unsorted, key=Contact.id_or_max)
-
     for index in range(0, len(contacts_from_home_page)):
         contact_from_home_page = contacts_from_home_page[index]
         contact_from_db = contacts_from_db[index]
-
         assert contact_from_home_page.id == contact_from_db.id
         assert contact_from_home_page.surname == contact_from_db.surname
         assert contact_from_home_page.name == contact_from_db.name
