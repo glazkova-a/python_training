@@ -3,13 +3,13 @@ from random import randrange
 import re
 
 
-
-
 def test_assert_random_contact(app):
     if app.contact.count_contact_entries() == 0:
-        app.contact.create_new_contact(Contact(name="Assert", surname="Me", address="169, Green St", email="assert@gmail.com",
-                                               email2="assert_me@gmail.com", email3="assert_itself@gmail.com", home_phone="0987654",
-                                               mobile_phone="56565656", work_phone="345676543", secondary_phone="+1234567890"))
+        app.contact.create_new_contact(Contact(name="Assert", surname="Me", address="169, Green St",
+                                               email="assert@gmail.com", email2="assert_me@gmail.com",
+                                               email3="assert_itself@gmail.com", home_phone="0987654",
+                                               mobile_phone="56565656", work_phone="345676543",
+                                               secondary_phone="+1234567890"))
 
     list_contact_from_home_page = app.contact.get_contact_list()
     index = randrange(len(list_contact_from_home_page))
@@ -42,21 +42,25 @@ def clear_phones(s):
     return re.sub('[() -]', "", s)
 
 
-
-
-
 def test_assert_all_contacts(app, db):
     if app.contact.count_contact_entries() == 0:
-        app.contact.create_new_contact(Contact(name="Assert", surname="Me", address="169, Green St", email="assert@gmail.com",
-                                               email2="assert_me@gmail.com", email3="assert_itself@gmail.com", home_phone="0987654",
-                                               mobile_phone="56565656", work_phone="345676543", secondary_phone="+1234567890"))
-        contact_from_home_page = app.contact.get_contact_list()
-        contact_from_db = db.get_contact_list()
+        app.contact.create_new_contact(Contact(name="Assert", surname="Me", address="169, Green St",
+                                               email="assert@gmail.com", email2="assert_me@gmail.com",
+                                               email3="assert_itself@gmail.com", home_phone="0987654",
+                                               mobile_phone="56565656", work_phone="345676543",
+                                               secondary_phone="+1234567890"))
+
+    contacts_from_home_page_unsorted = app.contact.get_contact_list()
+    contacts_from_db = db.get_contact_list()
+    contacts_from_home_page = sorted(contacts_from_home_page_unsorted, key=Contact.id_or_max)
+
+    for index in range(0, len(contacts_from_home_page)):
+        contact_from_home_page = contacts_from_home_page[index]
+        contact_from_db = contacts_from_db[index]
+
         assert contact_from_home_page.id == contact_from_db.id
         assert contact_from_home_page.surname == contact_from_db.surname
         assert contact_from_home_page.name == contact_from_db.name
         assert contact_from_home_page.address == contact_from_db.address
         assert contact_from_home_page.all_phones_from_home_page == merge_phones_like_on_home_page(contact_from_db)
         assert contact_from_home_page.all_emails == merge_emails_like_on_home_page(contact_from_db)
-
-
