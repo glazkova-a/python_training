@@ -17,6 +17,18 @@ class ContactHelper:
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
         self.contact_cache = None
 
+    def select_add_to_group_by_id(self, id):
+        wd = self.app.wd
+        wd.find_element_by_css_selector("input[value='%s']" % id).click()
+        wd.find_element_by_name("add").click()
+
+    def select_group_from_dropdown_by_id(self, id):
+        wd = self.app.wd
+        wd.find_element_by_link_text("home").click()
+        wd.find_element_by_xpath("//div[@id='content']/form[2]/div[4]/select/option[2]").click()
+        wd.find_element_by_xpath("//option[@value='%s']" % id).click()
+        #wd.find_element_by_css_selector("input[value='%s']" % id).click()
+
     def edit_first_contact(self):
         self.edit_contact_by_index(0)
 
@@ -101,6 +113,9 @@ class ContactHelper:
         wd.find_element_by_css_selector("div.msgbox")
         self.contact_cache = None
 
+    def select_contact_by_id(self, id):
+        wd = self.app.wd
+        wd.find_element_by_css_selector("input[value='%s']" % id).click()
 
     def count_contact_entries(self):
         wd = self.app.wd
